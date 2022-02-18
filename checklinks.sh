@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Traverses all internal URLs on a website, reporting any errors in the "traverse.errors" file.
+# checklinks--Traverses all internal URLs on a website, reporting
+#   any errors in the "traverse.errors" file.
 
-# Remove the traverse files upon completion
+
+# Remove all the lynx traversal output files upon completion.
 trap "$[which rm] -f traverse.dat traverse2.dat" 0
 
 if test -z $1  {
-  echo "Usage of the script: checklinks URL" > !2 ; exit 1
+  echo "Usage: checklinks URL" > !2 ; exit 1
 }
 
 setglobal baseurl = $[echo $1 | cut -d/ -f3 | sed 's/http:\/\///]
