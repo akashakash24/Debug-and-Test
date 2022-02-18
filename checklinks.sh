@@ -1,33 +1,31 @@
-#!/bin/bash
+#!/bin/sh
 
-# checklinks--Traverses all internal URLs on a website, reporting
+# checklinks - traverse all internal URLs on a Web site, reporting
 #   any errors in the "traverse.errors" file.
 
+lynx="/usr/local/bin/lynx"      # this might need to be tweaked
 
-# Remove all the lynx traversal output files upon completion.
-trap "$[which rm] -f traverse.dat traverse2.dat" 0
+# remove all the lynx traversal output files upon completion:
+trap "/bin/rm -f traverse*.errors reject*.dat traverse*.dat" 0
 
-if test -z $1  {
-  echo "Usage: checklinks URL" > !2 ; exit 1
-}
+if [ -z "$1" ] ; then
+  echo "Usage: checklinks URL" >&2 ; exit 1
+fi
 
-setglobal baseurl = $[echo $1 | cut -d/ -f3 | sed 's/http:\/\///]
+$lynx -traversal "$1" > /dev/null
 
-lynx -traversal -accept_all_cookies -realm $1 > /dev/null
-
-if test -s "traverse.errors"  {
- echo -n $[wc -l < traverse.errors] errors encountered.
- echo  Checked $[grep '^http' traverse.dat | wc -l] pages at $(1):
+if [ -s "traverse.errors" ] ; then
+ echo -n $(wc -l < traverse.errors) errors encountered.
+ echo \ Checked $(grep '^http' traverse.dat | wc -l) pages at ${1}:
  sed "s|$1||g" < traverse.errors
- mv traverse.errors $(baseurl).errors
- echo "(A copy of this output has been saved in $(baseurl).errors)"
-} else {
+else
  echo -n "No errors encountered. ";
- echo Checked $[grep '^http' traverse.dat | wc -l] pages at $(1)  
-}
+ echo Checked $(grep '^http' traverse.dat | wc -l) pages at ${1}
+ exit 0
+fi
 
-if test -s "reject.dat" {
- mv reject.dat $(baseurl).rejects
-}
+baseurl="$(echo $1 | cut -d/ -f3)"
+mv traverse.errors ${baseurl}.errors
+echo "(A copy of this output has been saved in ${baseurl}.errors)"
 
 exit 0
