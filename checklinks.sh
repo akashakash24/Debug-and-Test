@@ -3,6 +3,8 @@
 # checklinks - traverse all internal URLs on a Web site, reporting
 #   any errors in the "traverse.errors" file.
 
+#https://flylib.com/books/en/3.288.1.96/1/
+
 lynx="/usr/local/bin/lynx"      # this might need to be tweaked
 
 # remove all the lynx traversal output files upon completion:
