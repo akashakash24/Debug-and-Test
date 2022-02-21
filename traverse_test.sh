@@ -21,5 +21,14 @@ fi
 exit 0
 
 
-checklinks http://www.404-error-page.com/
-checklinks http://www.intuitive.com/library/
+bash traverse_checklinks.sh http://www.404-error-page.com/
+No errors encountered. Checked 1 pages at http://www.404-error-page.com/
+
+bash traverse_checklinks.sh http://www.intuitive.com/library/
+5 errors encountered. Checked 62 pages at http://intuitive.com/library/:
+index/ in BeingEarnest.shtml
+Archive/f8 in Archive/ArtofWriting.html
+Archive/f11 in Archive/ArtofWriting.html
+Archive/f16 in Archive/ArtofWriting.html
+Archive/f18 in Archive/ArtofWriting.html
+A copy of this output has been saved in intuitive.com.errors
