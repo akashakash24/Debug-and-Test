@@ -1,0 +1,22 @@
+buntu@ubuntu:~/Desktop/LKM$ sudo insmod learn.ko
+ubuntu@ubuntu:~/Desktop/LKM$ dmesg | tail -10
+[ 1179.315828] audit: type=1400 audit(1645410095.127:35): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.hook.configure" pid=4520 comm="apparmor_parser"
+[ 1181.044041] audit: type=1400 audit(1645410096.856:36): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.snap-store" pid=4521 comm="apparmor_parser"
+[ 1182.803700] audit: type=1400 audit(1645410098.616:37): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software" pid=4522 comm="apparmor_parser"
+[ 1184.677654] audit: type=1400 audit(1645410100.492:38): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software-local-file" pid=4526 comm="apparmor_parser"
+[ 1282.734538] rfkill: input handler disabled
+[ 5315.486562] learn: module verification failed: signature and/or required key missing - tainting kernel
+[ 5315.486700] Loading module....
+[ 5315.486702] Hello World....
+
+
+ubuntu@ubuntu:~/Desktop/LKM$ sudo rmmod learn
+ubuntu@ubuntu:~/Desktop/LKM$ dmesg | tail -10
+[ 1181.044041] audit: type=1400 audit(1645410096.856:36): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.snap-store" pid=4521 comm="apparmor_parser"
+[ 1182.803700] audit: type=1400 audit(1645410098.616:37): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software" pid=4522 comm="apparmor_parser"
+[ 1184.677654] audit: type=1400 audit(1645410100.492:38): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software-local-file" pid=4526 comm="apparmor_parser"
+[ 1282.734538] rfkill: input handler disabled
+[ 5315.486562] learn: module verification failed: signature and/or required key missing - tainting kernel
+[ 5315.486700] Loading module....
+[ 5315.486702] Hello World....
+[ 5340.195459] Bye World....
