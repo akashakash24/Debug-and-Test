@@ -19,3 +19,7 @@ if [ -s "reject.dat" ]; then
   mv reject.dat ${baseurl}.rejects
 fi
 exit 0
+
+
+checklinks http://www.404-error-page.com/
+checklinks http://www.intuitive.com/library/
