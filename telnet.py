@@ -17,3 +17,16 @@ tn.write("ls\n")
 tn.write("exit\n")
 
 print tn.read_all()
+
+------------------------------------------------------
+
+import getpass
+import telnetlib
+
+HOST = "localhost"
+tn = telnetlib.Telnet(HOST,999)
+tn.write("hello world\n")
+tn.write("exit\n")
+
+print tn.read_all()
+
